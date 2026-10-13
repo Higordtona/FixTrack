@@ -53,7 +53,7 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
 
   Future<void> _connect(String url) async {
     if (url.trim().isEmpty) {
-      setState(() => _error = 'اكتب عنوان السيرفر الأول');
+      setState(() => _error = 'Digite o endereço do servidor primeiro');
       return;
     }
     setState(() {
@@ -81,18 +81,18 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
         children: [
           const FixTrackLogo(size: 56),
           const SizedBox(height: 24),
-          Text('الاتصال بسيرفر المحل', style: text.titleLarge?.bold),
+          Text('Conectar ao servidor da loja', style: text.titleLarge?.bold),
           const SizedBox(height: 4),
-          Text('اتأكد إن الجهاز ده متوصل بنفس الواي فاي بتاع المحل، وإن البرنامج مفتوح على كمبيوتر المحل.',
+          Text('Verifique se este dispositivo está na mesma rede Wi-Fi da loja e se o programa está aberto no computador principal.',
               style: text.bodyMedium?.copyWith(color: scheme.onSurfaceVariant)),
           const SizedBox(height: 20),
           Row(
             children: [
-              Expanded(child: Text('السيرفرات اللي لقيناها', style: text.titleSmall?.bold)),
+              Expanded(child: Text('Servidores encontrados', style: text.titleSmall?.bold)),
               TextButton.icon(
                 onPressed: _searching ? null : _search,
                 icon: const Icon(Icons.refresh_rounded),
-                label: const Text('دوّر تاني'),
+                label: const Text('Buscar novamente'),
               ),
             ],
           ),
@@ -104,7 +104,7 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
                 child: Column(children: [
                   CircularProgressIndicator(),
                   SizedBox(height: 12),
-                  Text('بندوّر على سيرفر المحل في الشبكة...'),
+                  Text('Procurando servidores na rede...'),
                 ]),
               ),
             )
@@ -113,8 +113,8 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(18),
                 child: Text(
-                  'ملقيناش سيرفر في الشبكة. اتأكد من الواي فاي، أو اكتب عنوان السيرفر تحت '
-                  '(هتلاقيه في برنامج الكمبيوتر: الإعدادات ← الاتصال).',
+                  'Nenhum servidor encontrado. Verifique o Wi-Fi ou informe o endereço abaixo '
+                  '(no computador: Configurações → Conexão).',
                   style: text.bodyMedium,
                 ),
               ),
@@ -130,17 +130,17 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
                       backgroundColor: scheme.primaryContainer,
                       child: Icon(Icons.storefront_rounded, color: scheme.onPrimaryContainer),
                     ),
-                    title: Text(s.shopName.isEmpty ? 'محل جديد (لسه ما اتسجلش)' : s.shopName, style: text.titleSmall?.bold),
+                    title: Text(s.shopName.isEmpty ? 'Nova loja (ainda não cadastrada)' : s.shopName, style: text.titleSmall?.bold),
                     subtitle: Text([if (s.branchName.isNotEmpty) s.branchName, Uri.parse(s.url).host].join(' • ')),
                     trailing: _connectingTo == s.url
                         ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5))
-                        : const Icon(Icons.chevron_left_rounded),
+                        : const Icon(Icons.chevron_right_rounded),
                     onTap: _connectingTo == null ? () => _connect(s.url) : null,
                   ),
                 ),
               ),
           const SizedBox(height: 20),
-          Text('أو اكتب العنوان بنفسك', style: text.titleSmall?.bold),
+          Text('Ou digite o endereço manualmente', style: text.titleSmall?.bold),
           const SizedBox(height: 8),
           Directionality(
             textDirection: TextDirection.ltr,
@@ -153,7 +153,7 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
           ),
           const SizedBox(height: 12),
           BusyButton(
-            label: 'اتصل',
+            label: 'Conectar',
             busy: _connectingTo == _address.text && _connectingTo != null,
             onPressed: _connectingTo == null ? () => _connect(_address.text) : null,
           ),
@@ -161,7 +161,7 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
           const SizedBox(height: 16),
           TextButton(
             onPressed: () => ref.read(sessionProvider.notifier).resetConnection(),
-            child: const Text('رجوع'),
+            child: const Text('Voltar'),
           ),
         ],
       ),

@@ -19,8 +19,8 @@ class FixTrackApp extends ConsumerWidget {
     return MaterialApp(
       title: 'FixTrack',
       debugShowCheckedModeBanner: false,
-      locale: const Locale('ar', 'EG'),
-      supportedLocales: const [Locale('ar', 'EG'), Locale('en')],
+      locale: const Locale('pt', 'BR'),
+      supportedLocales: const [Locale('pt', 'BR'), Locale('en')],
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       theme: buildTheme(Brightness.light),
       darkTheme: buildTheme(Brightness.dark),

@@ -22,16 +22,16 @@ class WelcomeScreen extends ConsumerWidget {
         children: [
           const FixTrackLogo(size: 72),
           const SizedBox(height: 8),
-          Text('نظام إدارة محلات صيانة الموبايلات', textAlign: TextAlign.center, style: text.bodyLarge),
+          Text('Sistema de gestão de assistência técnica de celulares', textAlign: TextAlign.center, style: text.bodyLarge),
           const SizedBox(height: 32),
-          Text('الجهاز ده هيشتغل إزاي؟', style: text.titleLarge?.bold),
+          Text('Como este dispositivo será utilizado?', style: text.titleLarge?.bold),
           const SizedBox(height: 12),
           if (AppConfig.canHostServer) ...[
             _ModeCard(
               icon: Icons.dns_rounded,
-              title: 'الجهاز ده هو السيرفر الرئيسي للمحل',
-              subtitle: 'كل بيانات المحل هتتخزن على الكمبيوتر ده، والموبايلات والأجهزة التانية هتتصل بيه.\n'
-                  'اختار ده لو ده أول جهاز بتسطب عليه البرنامج في الفرع.',
+              title: 'Este dispositivo será o servidor principal da loja',
+              subtitle: 'Os dados da loja serão armazenados neste computador. Outros dispositivos poderão se conectar a ele.\n'
+                  'Escolha esta opção se for o primeiro dispositivo da filial.',
               recommended: true,
               onTap: () => controller.chooseMode(AppMode.server),
             ),
@@ -39,8 +39,8 @@ class WelcomeScreen extends ConsumerWidget {
           ],
           _ModeCard(
             icon: Icons.wifi_rounded,
-            title: 'الاتصال بسيرفر المحل',
-            subtitle: 'فيه كمبيوتر في المحل عليه البرنامج بالفعل، وعايز الجهاز ده يتصل بيه على نفس الواي فاي.',
+            title: 'Conectar ao servidor da loja',
+            subtitle: 'Já existe um computador com o FixTrack na loja e você quer conectar este dispositivo pela mesma rede Wi-Fi.',
             onTap: () => controller.chooseMode(AppMode.client),
           ),
         ],
@@ -99,7 +99,7 @@ class _ModeCard extends StatelessWidget {
                               color: brandOrange.withValues(alpha: 0.15),
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: Text('أول جهاز', style: text.labelSmall?.bold.copyWith(color: brandOrange)),
+                            child: Text('Dispositivo principal', style: text.labelSmall?.bold.copyWith(color: brandOrange)),
                           ),
                       ],
                     ),
@@ -108,7 +108,7 @@ class _ModeCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_left_rounded),
+              const Icon(Icons.chevron_right_rounded),
             ],
           ),
         ),

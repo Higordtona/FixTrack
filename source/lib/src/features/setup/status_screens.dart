@@ -55,7 +55,7 @@ class _ProblemScreen extends ConsumerWidget {
           FilledButton.icon(
             onPressed: () => ref.read(sessionProvider.notifier).retry(),
             icon: const Icon(Icons.refresh_rounded),
-            label: const Text('حاول تاني'),
+            label: const Text('Tentar novamente'),
           ),
           const SizedBox(height: 8),
           OutlinedButton(
@@ -75,9 +75,9 @@ class ServerFailedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => _ProblemScreen(
         icon: Icons.dns_rounded,
-        title: 'السيرفر ما اشتغلش',
+        title: 'Não foi possível iniciar o servidor',
         message: message,
-        secondaryLabel: 'تغيير طريقة تشغيل الجهاز',
+        secondaryLabel: 'Alterar modo de funcionamento',
       );
 }
 
@@ -88,8 +88,8 @@ class UnreachableScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => _ProblemScreen(
         icon: Icons.wifi_off_rounded,
-        title: 'مفيش اتصال بالسيرفر',
+        title: 'Sem conexão com o servidor',
         message: message,
-        secondaryLabel: 'اختار سيرفر تاني',
+        secondaryLabel: 'Escolher outro servidor',
       );
 }
