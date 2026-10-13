@@ -1,0 +1,32 @@
+name: Compilar APK FixTrack Brasil
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'source/**'
+      - '.github/workflows/apk-android.yml'
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Instalar dependências
+        working-directory: source
+        run: flutter pub get
+      - name: Compilar APK de teste
+        working-directory: source
+        run: flutter build apk --debug
+      - name: Disponibilizar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: FixTrack-PTBR-APK
+          path: source/build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
